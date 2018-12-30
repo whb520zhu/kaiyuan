@@ -1,0 +1,159 @@
+#include<stdio.h>
+void luru(int m,int n,double score[101][10]);//成绩录入函数void shuchu(int m,int n,double score[101][10]);//成绩输出函数void chaxun(int m,int n,double score[101][10]);//成绩查询函数void shanchu(int m,int n,double score[101][10]);//成绩删除函数void xiugai(int m,int n,double score[101][10]);//成绩修改函数void paixu(int m,int n,double score[101][10]);//成绩排序函数void charu(int m,int n,double score[101][10]);//成绩插入函数 int main()
+{
+
+int m,n;
+double score[101][10]={0};
+printf("Please input student and course numbers:"); scanf("%d %d",&m,&n);
+luru(m,n,score); shuchu(m,n,score); chaxun(m,n,score); shanchu(m,n,score); xiugai(m,n,score); paixu(m,n,score); charu(m,n,score); return 0;
+}
+
+//成绩录入
+
+void luru(int m,int n,double score[101][10])
+{
+
+int i,j;
+printf("Please input grades:\n"); for(i=0;i<m;i++)
+for(j=0;j<n;j++) scanf("%lf",&score[i][j]);
+
+}
+//成绩输出
+void shuchu(int m,int n,double score[101][10])
+{
+
+int i,j;
+printf("output grades:\n"); for(i=0;i<m;i++)
+{
+
+for(j=0;j<n;j++)
+printf("%.2f ",score[i][j]); printf("\n");
+}
+
+
+}
+//成绩查询
+void chaxun(int m,int n,double score[101][10])
+{
+
+double s; int i,j;
+int p1=0,p2=0;
+printf("请输入要查询的成绩:"); scanf("%lf",&s);
+
+
+{
+if(s==score[i][j])
+{
+
+p1=i+1; p2=j+1;
+printf("学生%d 课程%d",p1,p2);
+}
+
+printf("\n");
+}
+}
+}
+
+//成绩删除
+void shanchu(int m,int n,double score[101][10])
+{
+
+double s; int i,j;
+printf("请输入要删除的成绩:");
+scanf("%lf",&s); for(i=0;i<m;i++)
+{
+
+for(j=0;j<n;j++)
+{
+
+if(s==score[i][j])
+score[i][j]='\0';
+}
+}
+
+printf("删除后的成绩:\n");
+
+
+printf("%.2f ",score[i][j]); printf("\n");
+}
+}
+
+//成绩修改
+void xiugai(int m,int n,double score[101][10])
+{
+
+double s1,s2,t; int i,j;
+printf("请输入要修改的成绩和修改后的成绩:");
+scanf("%lf %lf",&s1,&s2); for(i=0;i<m;i++)
+{
+
+for(j=0;j<n;j++)
+{
+
+if(s1==score[i][j])
+{
+
+t=score[i][j];
+score[i][j]=s2; s2=t;
+}
+}
+}
+
+printf("修改后的成绩:\n"); for(i=0;i<m;i++)
+{
+
+for(j=0;j<n;j++)
+
+printf("%.2f ",score[i][j]); printf("\n");
+}
+}
+
+//成绩排序
+void paixu(int m,int n,double score[101][10])
+{
+
+int i,j,k; int max,t;
+for(i=0;i<m;i++)
+{
+
+for(j=0;j<n-1;j++)
+{
+
+max=j; for(k=j+1;k<n;k++)
+if(score[i][k]>score[i][max]) max=k;
+{
+t=score[i][j]; score[i][j]=score[i][max]; score[i][max]=t;
+}
+}
+}
+
+printf("排序后的成绩:\n"); for(i=0;i<m;i++)
+{
+
+for(j=0;j<n;j++)
+printf("%.2f ",score[i][j]); printf("\n");
+
+}
+}
+
+//成绩插入
+void charu(int m,int n,double score[101][10])
+{
+
+int i,j; double s; int p1,p2;
+printf("请输入被插入成绩的学生号及成绩:");
+scanf("%d %lf",&p1,&s); p2=p1-1;
+printf("插入后的成绩:\n");
+for(i=0;i<m;i++)
+{
+
+for(j=0;j<n+1;j++)
+{
+
+if(i==p2)
+score[p2][n]=s; printf("%.2f ",score[i][j]);
+}
+
+printf("\n");
+}
+}
